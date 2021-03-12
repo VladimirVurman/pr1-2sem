@@ -1,6 +1,17 @@
 #include <iostream>
 using namespace std;
-
+struct NOTE1
+{
+	Name Name;
+	int TELE;
+	Date DATE;
+};
+struct Name 
+{
+	char Name[50];
+	char Surname[20];
+	char Patronymic[50];
+};
 struct Date {
 	short day;
 	short month;
@@ -249,13 +260,59 @@ void task19_2()
 		}
 	}
 }
+void task19_3()
+{
+	cout << "\n 19_3. Ввод с клавиатуры данных в массив BLOCK,состоящийиз 9 элементов типа note1,записи должны быть упорядочены по инициалам,вывод на экран информации о людях чьи дни рождения приходятся на месяц,значение которого введено с клавиатуры,если такого человека нет - выдать сообщение\n";
+	const int N = 9;
+	NOTE1 BLOCK[N];
+
+	for (int i = 0; i < N; i++)
+	{
+		cout << "\nInput Name: ";
+		cin.ignore(std::cin.rdbuf()->in_avail());
+		cin.getline(BLOCK[i].Name.Name, 1);
+		cout << "\nInput Patronymic: ";
+		cin.ignore(std::cin.rdbuf()->in_avail());
+		cin.getline(BLOCK[i].Name.Patronymic, 1);
+		cout << "\nInput Surname: ";
+		cin.ignore(std::cin.rdbuf()->in_avail());
+		cin.getline(BLOCK[i].Name.Surname, 1);
+		do
+		{
+			cout << "\nInput birthday year(Not more then 2021): ";
+			cin.ignore(std::cin.rdbuf()->in_avail());
+			cin >> BLOCK[i].DATE.year;
+			cout << "\nInput birthday month(1-12): ";
+			cin >> BLOCK[i].DATE.month;
+			cout << "\nInput birthday day(1-31): ";
+			cin >> BLOCK[i].DATE.day;
+
+		} while (!BLOCK[i].DATE.isCorrect());
+		cout << "\nInput phone number: ";
+		cin >> BLOCK[i].TELE;
+
+	}
+	int Month = 0;
+	cout << "\nInput month number (1-12)\n";
+	cin >> Month;
+	for (int i = 0; i < N; i++)
+	{
+		if (BLOCK[i].DATE.month == Month)
+		{
+			cout << "\n Name: " << BLOCK[i].Name.Name << " " << BLOCK[i].Name.Patronymic << " " << BLOCK[i].Name.Surname;
+			cout << "\nBirthday: " << BLOCK[i].DATE.day << "." << BLOCK[i].DATE.month << "." << BLOCK[i].DATE.year;
+			cout << "\n Phone number:" << BLOCK[i].TELE;
+		}
+	}
+}
 
 
 int main()
 {
 	setlocale(LC_ALL, "rus");
 	//task19();
-	task19_2();
+	//task19_2();
+	task19_3();
 
 }
 
