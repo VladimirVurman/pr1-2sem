@@ -1,18 +1,15 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
-struct NOTE1
-{
-	Name Name;
-	int TELE;
-	Date DATE;
-};
-struct Name 
+struct Name
 {
 	char Name[50];
-	char Surname[20];
+	char Surname[50];
 	char Patronymic[50];
 };
-struct Date {
+struct Date
+{
 	short day;
 	short month;
 	short year;
@@ -82,6 +79,13 @@ bool Date::isCorrect()
 	}
 	return result;
 }
+struct NOTE1
+{
+	Name NAME;
+	int TELE;
+	Date DATE;
+};
+
 struct Worker       //Создаем структуру!
 {
 	char F[50];       //familiya
@@ -203,16 +207,16 @@ void task19_2()
 	}
 	for (int i = 0; i < N; i++)
 	{
-		if (group[i].Role==1)
+		if (group[i].Role == 1)
 		{
-			if (group[i].Kolvoigr>40)
+			if (group[i].Kolvoigr > 40)
 			{
 				if ((2021 - group[i].birthday.year) < 20)
 				{
 					cout << "\nFamily: " << group[i].Family;
 					cout << "\nClub: " << group[i].Klub;
 					cout << "\nAmlua: Defender";
-					cout << "\nBirthday: " << group[i].birthday.day << "." <<group[i].birthday.month<<"."<< group[i].birthday.year;
+					cout << "\nBirthday: " << group[i].birthday.day << "." << group[i].birthday.month << "." << group[i].birthday.year;
 					cout << "\nQuantity of games: " << group[i].Kolvoigr;
 					cout << "\nBirthplace: " << group[i].Birthplace;
 
@@ -221,7 +225,7 @@ void task19_2()
 				}
 				else
 				{
-					if ((2021 - group[i].birthday.year) == 20 && (3- group[i].birthday.month)<0)
+					if ((2021 - group[i].birthday.year) == 20 && (3 - group[i].birthday.month) < 0)
 					{
 						cout << "\nFamily: " << group[i].Family;
 						cout << "\nClub: " << group[i].Klub;
@@ -263,43 +267,54 @@ void task19_2()
 void task19_3()
 {
 	cout << "\n 19_3. Ввод с клавиатуры данных в массив BLOCK,состоящийиз 9 элементов типа note1,записи должны быть упорядочены по инициалам,вывод на экран информации о людях чьи дни рождения приходятся на месяц,значение которого введено с клавиатуры,если такого человека нет - выдать сообщение\n";
-	const int N = 9;
+	const int N = 2;
 	NOTE1 BLOCK[N];
 
 	for (int i = 0; i < N; i++)
 	{
 		cout << "\nInput Name: ";
 		cin.ignore(std::cin.rdbuf()->in_avail());
-		cin.getline(BLOCK[i].Name.Name, 1);
+		cin.getline(BLOCK[i].NAME.Name, 50);
 		cout << "\nInput Patronymic: ";
 		cin.ignore(std::cin.rdbuf()->in_avail());
-		cin.getline(BLOCK[i].Name.Patronymic, 1);
+		cin.getline(BLOCK[i].NAME.Patronymic, 50);
 		cout << "\nInput Surname: ";
 		cin.ignore(std::cin.rdbuf()->in_avail());
-		cin.getline(BLOCK[i].Name.Surname, 1);
+		cin.getline(BLOCK[i].NAME.Surname, 50);
 		do
 		{
-			cout << "\nInput birthday year(Not more then 2021): ";
 			cin.ignore(std::cin.rdbuf()->in_avail());
-			cin >> BLOCK[i].DATE.year;
-			cout << "\nInput birthday month(1-12): ";
-			cin >> BLOCK[i].DATE.month;
-			cout << "\nInput birthday day(1-31): ";
-			cin >> BLOCK[i].DATE.day;
+			BLOCK[i].DATE.year = rand() % 22 + 2000;
+			BLOCK[i].DATE.month = rand() % 13;
+			BLOCK[i].DATE.day = rand() % 32;
 
 		} while (!BLOCK[i].DATE.isCorrect());
-		cout << "\nInput phone number: ";
-		cin >> BLOCK[i].TELE;
+		BLOCK[i].TELE = rand()%100000000;
 
+	};
+	NOTE1 person;
+	for (int i = 0; i < N; i++)
+	{
+		
+		if (strcmp(BLOCK[i].NAME.Name, BLOCK[i + 1].NAME.Name) > 0 && strcmp(BLOCK[i].NAME.Patronymic, BLOCK[i + 1].NAME.Patronymic)>0)
+		{
+			swap(BLOCK[i], BLOCK[i + 1]);
+		}
 	}
 	int Month = 0;
+	for (int i = 0; i < N; i++)
+	{
+		cout << "\n Name: " << BLOCK[i].NAME.Name << " " << BLOCK[i].NAME.Patronymic << " " << BLOCK[i].NAME.Surname;
+		cout << "\nBirthday: " << BLOCK[i].DATE.day << "." << BLOCK[i].DATE.month << "." << BLOCK[i].DATE.year;
+		cout << "\n Phone number:" << BLOCK[i].TELE;
+	}
 	cout << "\nInput month number (1-12)\n";
 	cin >> Month;
 	for (int i = 0; i < N; i++)
 	{
 		if (BLOCK[i].DATE.month == Month)
 		{
-			cout << "\n Name: " << BLOCK[i].Name.Name << " " << BLOCK[i].Name.Patronymic << " " << BLOCK[i].Name.Surname;
+			cout << "\n Name: " << BLOCK[i].NAME.Name << " " << BLOCK[i].NAME.Patronymic << " " << BLOCK[i].NAME.Surname;
 			cout << "\nBirthday: " << BLOCK[i].DATE.day << "." << BLOCK[i].DATE.month << "." << BLOCK[i].DATE.year;
 			cout << "\n Phone number:" << BLOCK[i].TELE;
 		}
@@ -313,6 +328,4 @@ int main()
 	//task19();
 	//task19_2();
 	task19_3();
-
 }
-
