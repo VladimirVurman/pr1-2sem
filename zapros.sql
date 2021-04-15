@@ -33,6 +33,34 @@ ORDER BY `client`.`F` ASC
     
 / 6. Запрос с параметрами /
 
+ UPDATE `film` SET `price`=`price`/(22);
+SELECT `client`.`UniqueID`, `film`.`Film`, `film`.`Price`
+FROM `film`
+    LEFT JOIN `usluga` ON `usluga`.`FilmID` = `film`.`FilmID`
+    LEFT JOIN `client` ON `usluga`.`ClientID` = `client`.`UniqueID`
+WHERE (`film`.`Film` ='Сегодня жизнь бесплатная')
+
+
+
+/ 7. Фамилии и инициалы /
+
+SELECT F, LEFT(I,1), LEFT(O,1) FROM client 
+
+/ 8. Изменение регистра /
+
+SELECT F, UPPER(F) as F FROM client
+
+/ 9. Средняя цена /
+
+SELECT AVG(Price) AS price FROM film
+
+/ 10. Суммарная стоимость /
+SELECT SUM(Price)
+FROM film
+
+/ 11. Количество фильм /
+
+SELECT COUNT('ID of usluga') as count FROM usluga 
 
 
 
