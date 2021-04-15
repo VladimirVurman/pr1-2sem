@@ -65,3 +65,48 @@ SELECT COUNT('ID of usluga') as count FROM usluga
 
 
 
+
+
+
+-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-I-
+
+/ 1. New Table /
+
+CREATE TABLE new_table AS SELECT * FROM author,client,usluga;
+
+/ 3. 
+
+ UPDATE
+  Film
+ SET
+  price = price * 1.2
+ WHERE
+  1;
+
+
+/ 4.
+
+
+ DELETE
+ FROM
+  new_table
+ WHERE
+  F='Сергеев'
+  
+  / 5.
+  
+  
+INSERT INTO new_table
+(
+  price
+  )
+ SELECT
+  price
+ FROM
+  film
+ WHERE
+  1;
+
+// Пришлось вставить костыль, и добавить колонку price в new_table вручную , т.к. что-то багалось, и уже после этого вносить командой значения, но работает!
