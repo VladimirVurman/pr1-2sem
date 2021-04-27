@@ -18,24 +18,24 @@ DELETE FROM usluga;
 
 
   
-  USE order;
+  USE filmoteka;
   LOAD DATA INFILE "E:\author2.txt"
   INTO  TABLE author
   LINES TERMINATED BY '\n';
 
 
-  USE order;
+  USE filmoteka;
   LOAD DATA INFILE "E:\client2.txt"
   INTO  TABLE client
   LINES TERMINATED BY '\n';
 
 
-  USE order;
+  USE filmoteka;
   LOAD DATA INFILE "E:\film2.txt"
   INTO  TABLE film
   LINES TERMINATED BY '\n';
 
-  USE order;
+  USE filmoteka;
   LOAD DATA INFILE "E:\usluga2.txt"
   INTO  TABLE usluga
   LINES TERMINATED BY '\n';
