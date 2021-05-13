@@ -52,9 +52,81 @@ void task1_2() {
 	}
 	out.close();
 }
+
+void task2() 
+{
+    ofstream five("D:\\number.txt");
+    five << "\n7 9 15 1 2 9 4 7 6 14 10";
+    five.close();
+} 
+
+void task2_1() {
+    string o;
+    float oddd=0,evenn=0;
+    int chislo;
+    ifstream five("D:\\number.txt");
+    ofstream odd("D:\\number2(nechetnie).txt");
+    ofstream even("D:\\number3(chetnie).txt");
+
+    if (five.is_open())
+    {
+        while (getline(five, o, ' '))
+        {
+            cout << " " << o;
+            chislo = stof(o);
+            if (chislo%2==1)
+            {
+                oddd = chislo;
+                odd << oddd << " ";
+            }
+            else
+            {
+                if (chislo % 2 == 0)
+                {
+                    evenn = chislo;
+                    even << evenn << " ";
+                }
+            }
+        }
+
+    }
+    even.close();
+    odd.close();
+    five.close();
+}
+void task2_2() {
+    ifstream odd("D:\\number2(nechetnie).txt");
+    string line;
+    cout << endl << "Не чётные" << endl;
+    if (odd.is_open())
+    {
+        while (getline(odd, line))
+        {
+            cout << line << std::endl;
+        }
+    }
+    odd.close();
+
+    ifstream even("D:\\number3(chetnie).txt");
+    string line2;
+    cout << endl << "Чётные" << endl;
+    if (even.is_open())
+    {
+        while (getline(even, line2))
+        {
+            cout << line2 << std::endl;
+        }
+    }
+   even.close();
+  
+} 
+
 int main() {
 	setlocale(LC_ALL, "Russian");
 	task1();
 	task1_1();
 	task1_2();
+	 task2();
+	task2_1();
+	task2_2();
 }
